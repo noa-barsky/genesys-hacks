@@ -59,6 +59,15 @@ module.exports = function (app, io, workspaceApi, storage, request, statisticsAp
       res.status(403).json('Forbidden');
     }
   });
+
+  app.get('/sendtext', (req, res) => {
+    const TMClient = require('textmagic-rest-client');
+    var c = new TMClient('suhaskabinna', '0VmRkLoeXvXjXxjE5NNd87g9RcWNtB'); 
+    c.Messages.send({text: 'test message', phones:'+13433335491'}, function(err, res){
+      console.log('Messages.send()', err, res);
+    });
+    res.send('sent');
+  });
   
   // Initializing Workspace API
   app.get('/initialize', (req, res) => {

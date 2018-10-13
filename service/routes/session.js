@@ -71,7 +71,7 @@ module.exports = function (app, io, workspaceApi, storage, request, statisticsAp
     var email 	= require("../../node_modules/emailjs/email");
     var server 	= email.server.connect({
        user:    "suhas.servesh2@gmail.com",
-       password:"Ilovepanda123",
+      //  password:"Ilovepanda123",
        host:    "smtp.gmail.com",
        ssl:     true
     });

@@ -8,6 +8,14 @@
     <script type="text/javascript" src="./libs/axios.min.js"></script>
     <script type="text/javascript" src="./libs/socket.io.min.js"></script>
     <script type="text/javascript" src="./libs/json-formater.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+
+  // Load the Visualization API library and the piechart library.
+  google.load('visualization', '1.0', {'packages':['corechart']});
+     // ... draw the chart...
+</script>
   </head>
   <body>
     <div id="app">
@@ -51,6 +59,9 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       <div id="piechart" style="width: 900px; height: 500px;"></div>
+   
     <img id="secret" src="./secret/nyan.gif"/>
     <script type="text/javascript">
       // Not so interesting stuff there
@@ -177,19 +188,16 @@
 
       //Subscribe to statistics
       getStatValue = function(stateName) {
-        var objectId = document.getElementById('objectId').value;
-        var objectType = document.getElementById('objectType').value;
         axios.get('/statistics/getValue', {
             params: {
               objectId: "SuhasK",
               objectType: "Agent",
-              statName : stateName
+              statName: stateName
             }
           })
           .then(function (response) {
             // On success
             formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
-
             logsContainer.appendChild(formatted.render());
           })
           .catch(function (error) {
@@ -198,7 +206,6 @@
             logsContainer.appendChild(formatted.render());
           })
       }
-
 
       // Set the agent Ready if not, otherwise will set to Not Ready
       toggleState = function () {
@@ -249,11 +256,54 @@
       document.getElementById('get-users').addEventListener('click', () => {
         getUsers();
       });
-
-      document.getElementById('getStatValue').addEventListener('click', () => {
-        getStatValue("InboundCalls")
+      
+      // Get Stat Value call Update statistics every 1 seconds and timeout after set time
+      $("#getStatValue").on('click', function(){
         
+        function GetAllStatistics(){
+          getStatValue("InboundCalls"); 
+          getStatValue("OutboundCalls"); 
+
+        };
+
+        // Update report every second
+        interval = setInterval(GetAllStatistics,
+        1000);
+
+        // Set Timeout Interval
+        setTimeout(() => {
+          clearInterval(interval);  
+        }, 1000);
+ 
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+			setInterval(drawChart, 1000);
+      
+      function drawChart() {
+        value = Math.random();
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Work',     value*100],
+          ['Commute',  2],
+          ['Watch TV', 2],
+          ['Sleep',    7]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+
       });
+ 
+
+      // document.getElementById('getStatValue').addEventListener('click', () => {
+      //   getStatValue("InboundCalls");
+      // });
       
       document.getElementById('clear').addEventListener('click', () => {
         logsContainer.innerHTML = '';

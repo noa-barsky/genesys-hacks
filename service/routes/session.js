@@ -61,12 +61,30 @@ module.exports = function (app, io, workspaceApi, storage, request, statisticsAp
   });
 
   app.get('/sendtext', (req, res) => {
-    const TMClient = require('textmagic-rest-client');
-    var c = new TMClient('suhaskabinna', '0VmRkLoeXvXjXxjE5NNd87g9RcWNtB'); 
-    c.Messages.send({text: 'test message', phones:'+13433335491'}, function(err, res){
-      console.log('Messages.send()', err, res);
+    // const TMClient = require('textmagic-rest-client');
+    // var c = new TMClient('suhaskabinna', '0VmRkLoeXvXjXxjE5NNd87g9RcWNtB'); 
+    // c.Messages.send({text: 'test message', phones:'+13433335491'}, function(err, res){
+    //   console.log('Messages.send()', err, res);
+    // });
+    // res.send('sent');
+
+    var email 	= require("../../node_modules/emailjs/email");
+    var server 	= email.server.connect({
+       user:    "suhas.servesh2@gmail.com",
+       password:"Ilovepanda123",
+       host:    "smtp.gmail.com",
+       ssl:     true
     });
-    res.send('sent');
+    
+    // send the message and get a callback with an error or details of the message that was sent
+    server.send({
+       text:    "i hope this works",
+       from:    "suhas.servesh2@gmail.com",
+       to:      "suhas.servesh@gmail.com",
+       cc:      "",
+       subject: "testing emailjs"
+    }, function(err, message) { console.log(err || message); });
+
   });
   
   // Initializing Workspace API

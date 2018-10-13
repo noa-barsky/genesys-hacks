@@ -14,7 +14,9 @@
     "genesys-workspace-client-js": "latest",
     "morgan": "^1.9.0",
     "request": "^2.88.0",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "textmagic-rest-client": "^1.0.10",
+    "twilio": "^3.22.0"
   },
   "devDependencies": {
     "genesys-statistics-client-js": "^1.0.343"

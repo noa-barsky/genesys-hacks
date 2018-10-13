@@ -10,13 +10,14 @@ const authentication = require('genesys-authentication-client-js');
 const ProvisioningApi = require('genesys-provisioning-client-js');
 const Statistics = require('genesys-statistics-client-js');
 const uuid = require('uuid/v4');
-var TMClient = require('textmagic-rest-client');
+const TMClient = require('textmagic-rest-client');
   
-var c = new TMClient('suhaskabinna', '0VmRkLoeXvXjXxjE5NNd87g9RcWNtB');
-c.Messages.send({text: 'test message', phones:'+13433335491'}, function(err, res){
-    console.log('Messages.send()', err, res);
-});
 
+// c.Messages.send({text: 'test message', phones:'+13433335491'}, function(err, res){
+//     console.log('Messages.send()', err, res);
+// });
+//19057199829
+//13433335491
 
 const app = express();
 
@@ -76,6 +77,7 @@ require('./controllers/events')(workspaceApi, io, storage);
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 server.listen(storage.port, () => {
   console.info(`Server started on port: ${storage.port}`);

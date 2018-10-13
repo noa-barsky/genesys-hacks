@@ -11,13 +11,6 @@ const ProvisioningApi = require('genesys-provisioning-client-js');
 const Statistics = require('genesys-statistics-client-js');
 const uuid = require('uuid/v4');
 const TMClient = require('textmagic-rest-client');
-  
-
-// c.Messages.send({text: 'test message', phones:'+13433335491'}, function(err, res){
-//     console.log('Messages.send()', err, res);
-// });
-//19057199829
-//13433335491
 
 const app = express();
 

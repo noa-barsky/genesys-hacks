@@ -10,6 +10,12 @@ const authentication = require('genesys-authentication-client-js');
 const ProvisioningApi = require('genesys-provisioning-client-js');
 const Statistics = require('genesys-statistics-client-js');
 const uuid = require('uuid/v4');
+var TMClient = require('textmagic-rest-client');
+  
+var c = new TMClient('suhaskabinna', '0VmRkLoeXvXjXxjE5NNd87g9RcWNtB');
+c.Messages.send({text: 'test message', phones:'+13433335491'}, function(err, res){
+    console.log('Messages.send()', err, res);
+});
 
 
 const app = express();

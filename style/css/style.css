@@ -1,5 +1,6 @@
 body {
   background-color: #C3E2EC;
+  font-family: "Montserrat", sans-serif;
 }
 
 .graph {
@@ -8,15 +9,23 @@ body {
   border-bottom-style: solid;
   border-left-width: 2%;
   border-bottom-width: 2%;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding-left: 8%;
+  padding-right: 8%;
   margin-left: 0;
-  margin-right: 8%;
+  margin-right: 0;
   padding-top: 45%;
   margin-top: 0;
   margin-bottom: 0;
   padding-bottom: 0;
   border-color: #19195E;
+}
+
+.call-side {
+  margin-left: 18%;
+  margin-right: 0%;
+}
+.call-side .col-md-6 .row {
+  padding-top: 5%;
 }
 
 h1 {
@@ -33,7 +42,7 @@ h1 {
   writing-mode: vertical-rl;
   -webkit-transform: rotate(180deg);
   margin-top: 120%;
-  margin-left: 20%;
+  margin-left: 0;
   padding-right: 0;
   margin-right: 0;
   padding-bottom: 0;

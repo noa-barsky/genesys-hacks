@@ -71,4 +71,4 @@ require('./routes/statistics')(app, storage, statisticsApi)
 // Event Controllers
 require('./controllers/events')(workspaceApi, io, storage);
 
-server.listen(process.env.port || 3002);
+server.listen(process.env.PORT);

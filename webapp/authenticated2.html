@@ -396,7 +396,7 @@
             var dictionary_key = $("#dictionary_key");
             var keyDK = "";
 
-            // $('.overlay').hide();
+            $('.overlay').hide();
             // Not so interesting stuff there
             const JSONFormatter = window.JSONFormatter.default;
             const JSONFormatterConfig = {
@@ -703,18 +703,18 @@
             GetAllStatistics();
 
             // Update report every second
-            // interval = function () {
-            //     setInterval(GetAllStatistics,
-            //         1000);
-            // };
+            interval = function () {
+                setInterval(GetAllStatistics,
+                    10000);
+            };
 
 
-            // interval();
+            interval();
             // Set Timeout Interval
             timeout = function () {
                 setTimeout(() => {
                     clearInterval(interval);
-                }, 100000);
+                }, 1000000);
             };
 
 

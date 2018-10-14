@@ -74,11 +74,9 @@
   <div class='overlay'>
     <div class='popup'>
       <div class='close'>&#10006;</div><!-- close button-->
-      <h2>Send Email to Clients</h2> <!-- title food the popup-->
+      <h2 id="dictionary_key"></h2> <!-- title food the popup-->
       <div class="col-md-12">
-
         <div class="col-md-2">
-
         </div>
         <div class="col-md-8">
           <form>
@@ -101,7 +99,7 @@
             </div>
 
             <div class="form-group">
-              <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+              <button class="btn btn-primary " name="submit" id="sendEmail" type="submit">Submit</button>
             </div>
 
           </form>
@@ -117,6 +115,15 @@
   <script type="text/javascript">
 
     $(document).ready(function () {
+
+      var emailSubject = $("#subject");
+      var emailMessage = $("#message");
+      var emailName = $("#name");
+      var sendEmail = $("#sendEmail");
+      var dictionary_key = $("#dictionary_key");
+      var keyDK = "";
+
+      $('.overlay').hide();
       // Not so interesting stuff there
       const JSONFormatter = window.JSONFormatter.default;
       const JSONFormatterConfig = {
@@ -240,9 +247,20 @@
           })
       }
 
-      var reasons_dict = { "InboundCalls": 1000, "OutboundCalls": 1000, "MissedCalls": 1000, "HoldDuration": 1000, "RefusedCalls": 1000, "ReadyDuration": 1000 };
+      var reasons_dict = {
+        "InboundCalls": 1000, "OutboundCalls": 1000, "MissedCalls": 1000,
+        "HoldDuration": 1000, "RefusedCalls": 1000, "ReadyDuration": 1000
+      };
+
+      var reasons_mapping = {
+        "InboundCalls": "Mobile Banking Inquiry", "OutboundCalls": "Exchange Rate", "MissedCalls": "General Banking Inquiry",
+        "HoldDuration": "Investments", "RefusedCalls": "Hours and Location", "ReadyDuration": "Loans"
+      }
+
+
       var mean = 3000;
       google.charts.load('current', { 'packages': ['corechart'] });
+
       function drawChart(value, stateName) {
 
         var value = Math.random();
@@ -294,16 +312,7 @@
             formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
             logsContainer.appendChild(formatted.render());
           })
-      }
-
-
-
-
-
-
-
-
-
+      };
 
       // Set the agent Ready if not, otherwise will set to Not Ready
       toggleState = function () {
@@ -320,7 +329,8 @@
             formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
             logsContainer.appendChild(formatted.render());
           })
-      }
+      };
+
       doSomethingAwesome = function () {
         console.log();
         document.getElementById('secret').style.display = 'block';
@@ -343,7 +353,7 @@
             formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
             logsContainer.appendChild(formatted.render());
           })
-      }
+      };
 
       document.getElementById('logout').addEventListener('click', () => {
         logout();
@@ -361,6 +371,10 @@
           if (key !== "undefined") {
             if (reasons_dict[key] > above_ave) {
               clearInterval(interval);
+              dictionary_key.empty();
+              dictionary_key.append('Send Email to Clients about ');
+              dictionary_key.append(reasons_mapping[key]);
+              keyDK = key;
               $('.overlay').show();
               break;
               return true;
@@ -368,7 +382,28 @@
           }
         }
       };
-      $('.overlay').show();
+
+      sendEmail.on('click', function (e) {
+        var Cdata = {
+          subject: emailSubject.val(),
+          name: emailName.val(),
+          message: emailMessage.val()
+        };
+        e.preventDefault();
+
+        $.ajax({
+          type: "POST",
+          url: '/sendEmail',
+          data: Cdata,
+          success: function (ht) {
+            // clearInterval(interval);
+            reasons_dict[keyDK] = reasons_dict[keyDK] * 0.05;
+            $('.overlay').hide();
+          }
+          // contentType: "application/json"
+        });
+        return false;
+      });
 
       $('.close').click(function () {
         $('.overlay').hide();
@@ -382,29 +417,30 @@
         getStatValue("MissedCalls");
         getStatValue("RefusedCalls");
         getStatValue("ReadyDuration");
+        mean += mean;
 
-
-        // for (var key in reasons_dict) {
-        //   if (key !== "undefined")
-        //     mean += reasons_dict[key];
-        // }
-        // mean = mean / 6;
-
+        for (var key in reasons_dict) {
+          if (key !== "undefined")
+            mean += reasons_dict[key];
+        }
+        mean = mean / 6;
       };
+
       GetAllStatistics();
 
-
       // Update report every second
-      interval = setInterval(GetAllStatistics,
-        5000);
+      interval = function(){
+        setInterval(GetAllStatistics,
+        10000);
+      };
 
+      interval();
       // Set Timeout Interval
-      setTimeout(() => {
-        clearInterval(interval);
-      }, 60000);
-
-
-
+      timeout = function() {
+        setTimeout(() => {
+          clearInterval(interval);
+        }, 100000);
+      };
 
 
       document.getElementById('clear').addEventListener('click', () => {

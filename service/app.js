@@ -48,6 +48,10 @@ app.use(express.static('webapp', {
   extensions: ['html', 'htm']
 }));
 
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // Router W/auth
 require('./routes/session')(app, io, workspaceApi, storage, request, statisticsApi, provisioningApi);
 
@@ -66,11 +70,6 @@ require('./routes/provisioning')(app, request, provisioningApi, storage);
 require('./routes/statistics')(app, storage, statisticsApi)
 // Event Controllers
 require('./controllers/events')(workspaceApi, io, storage);
-
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 
 server.listen(storage.port, () => {
   console.info(`Server started on port: ${storage.port}`);

@@ -1,12 +1,12 @@
 module.exports = function (app, io, workspaceApi, storage, request, statisticsApi, provisioningApi) {
 
-  function loginWithLoginPage(req,res) {
+  function loginWithLoginPage(req, res) {
     storage.redirectUri = `${req.protocol}://${req.hostname}:${storage.port}/initialize`;
     const authLoginPage = `${storage.apiUrl}/auth/v3/oauth/authorize?response_type=code&client_id=${storage.clientId}&redirect_uri=${storage.redirectUri}`;
     res.redirect(authLoginPage);
   };
 
-  function loginWithoutLoginPage(req,res) {
+  function loginWithoutLoginPage(req, res) {
     let encodedCredentials = new Buffer(`${storage.clientId}:${storage.clientSecret}`).toString('base64');
     // Your agent username
     let username = 'StephaneHervochon@genesys.com';
@@ -17,50 +17,53 @@ module.exports = function (app, io, workspaceApi, storage, request, statisticsAp
         'x-api-key': storage.apiKey,
         'content-type': 'application/x-www-form-urlencoded',
         'Authorization': `Basic ${encodedCredentials}`
-        },
+      },
       form: {
         client_id: storage.clientId,
         grant_type: 'password',
-        scope:'*',
+        scope: '*',
         username: `Hackathon\\${username}`,
         password: password
       },
       json: true
     }, function (err, res2, body) {
-      initializeWorkspace(body, res);  
+      initializeWorkspace(body, res);
     });
   };
 
   function initializeWorkspace(body, res) {
     storage.token = body.access_token;
-    workspaceApi.initialize({token: storage.token}).then(() => {
-        workspaceApi.activateChannels(workspaceApi.user.employeeId, null, workspaceApi.user.defaultPlace).then(() => {
-          storage.user = workspaceApi.user;
-          statisticsApi.initialize(storage.token).then( () => {
-            provisioningApi.initialize({token: storage.token}).then( () => {
-              res.redirect('/authenticated');
-            });
+    workspaceApi.initialize({ token: storage.token }).then(() => {
+      workspaceApi.activateChannels(workspaceApi.user.employeeId, null, workspaceApi.user.defaultPlace).then(() => {
+        storage.user = workspaceApi.user;
+        statisticsApi.initialize(storage.token).then(() => {
+          provisioningApi.initialize({ token: storage.token }).then(() => {
+            res.redirect('/authenticated');
           });
-        })
+        });
+      })
         .catch(err => {
           throw new Error(err);
         });
-      }).catch(err => {
-        console.error(err);
-        res.redirect('/');
-      });
+    }).catch(err => {
+      console.error(err);
+      res.redirect('/');
+    });
   };
 
   // Getting current logged-in user
   app.get('/current-session', (req, res) => {
     if (storage.user) {
-      res.send({user: storage.user});
+      res.send({ user: storage.user });
     } else {
       res.status(403).json('Forbidden');
     }
   });
 
-  app.get('/sendtext', (req, res) => {
+
+  //
+  app.post('/sendEmail', (req, res) => {
+    
     // const TMClient = require('textmagic-rest-client');
     // var c = new TMClient('suhaskabinna', '0VmRkLoeXvXjXxjE5NNd87g9RcWNtB'); 
     // c.Messages.send({text: 'test message', phones:'+13433335491'}, function(err, res){
@@ -68,25 +71,31 @@ module.exports = function (app, io, workspaceApi, storage, request, statisticsAp
     // });
     // res.send('sent');
 
-    var email 	= require("../../node_modules/emailjs/email");
-    var server 	= email.server.connect({
-       user:    "suhas.servesh2@gmail.com",
-       password:"Ilovepanda123",
-       host:    "smtp.gmail.com",
-       ssl:     true
+    var emailData = req.body;
+    console.log(emailData)
+    // Send data to email server
+
+    var email = require("../../node_modules/emailjs/email");
+    var server = email.server.connect({
+      user: "suhas.servesh2@gmail.com",
+      password: "Ilovepanda123",
+      host: "smtp.gmail.com",
+      ssl: true
     });
-    
+
     // send the message and get a callback with an error or details of the message that was sent
     server.send({
-       text:    "i hope this works",
-       from:    "suhas.servesh2@gmail.com",
-       to:      "suhas.servesh@gmail.com",
-       cc:      "",
-       subject: "testing emailjs"
-    }, function(err, message) { console.log(err || message); });
-
+      text: emailData.subject,
+      from: "suhas.servesh2@gmail.com",
+      to: "suhas.servesh@gmail.com;suhas.servesh1@gmail.com",
+      cc: "",
+      subject: emailData.message
+    }, function (err, message) {
+        console.log(err || message);
+      });
+    res.send('sent');
   });
-  
+
   // Initializing Workspace API
   app.get('/initialize', (req, res) => {
     let encodedCredentials = new Buffer(`${storage.clientId}:${storage.clientSecret}`).toString('base64');
@@ -104,13 +113,13 @@ module.exports = function (app, io, workspaceApi, storage, request, statisticsAp
       json: true
     }, function (err, res2, body) {
       initializeWorkspace(body, res);
-     });
+    });
   });
 
   // Logging in (redirect to auth page)
   app.get('/login', (req, res) => {
     //To log in with a login page
-    loginWithLoginPage(req,res);
+    loginWithLoginPage(req, res);
     //To log in without a login page (userName & password available in the request to get auth token)
     //loginWithoutLoginPage(req,res);
   });

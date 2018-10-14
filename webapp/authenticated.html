@@ -190,13 +190,14 @@
         })
       }
 
-      var exchange, general, hl, loans, invest, mobile;
+      var exchange, general, hl, loans, invest, mobile, mean;
         exchange = 1000;
         general = 1000;
         hl = 1000;
         loans = 1000;
         mobile = 1000;
         invest = 1000;
+        mean = 20000;
       google.charts.load('current', {'packages':['corechart']});
       function drawChart(value, stateName) {
     
@@ -224,20 +225,20 @@
       }
        
         var data = google.visualization.arrayToDataTable([
-          ['Reason for Call', 'Number of Calls'],
-          ['Mobile Banking Inquiry',   mobile],
-          ['Exchange Rate',  exchange],
-          ['General Banking Inquiry', general],
-          ['Investments',   invest],
-          ['Hours and Location',    hl],
-          ['Loans',  loans]
+          ['Reason for Call', 'Number of Calls', 'Average'],
+          ['Mobile Banking Inquiry',   mobile, mean],
+          ['Exchange Rate',  exchange, mean],
+          ['General Banking Inquiry', general, mean],
+          ['Investments',   invest, mean],
+          ['Hours and Location',    hl, mean],
+          ['Loans',  loans,mean]
 
         ]);
 
         var options = {
           title: 'Reasons for Calls',
           seriesType: "bars",
-          series: {6: { type: 'line'}}
+          series: {1: { type: 'line'}}
           
         };
 
@@ -350,6 +351,8 @@
         getStatValue("MissedCalls"); 
         getStatValue("RefusedCalls"); 
         getStatValue("ReadyDuration"); 
+        mean = (mean + general + loans + exchange + hl + invest + mobile) / 6;
+
           // console.log(inbound, outbound);
         };
         GetAllStatistics();

@@ -44,7 +44,7 @@ const workspaceApi = new workspace(storage.apiKey, storage.apiUrl);
 const statisticsApi = new Statistics(storage.apiKey, storage.apiUrl);
 
 // Serve webapp
-app.use(express.static('webapp', {
+app.use(express.static('./', {
   extensions: ['html', 'htm']
 }));
 

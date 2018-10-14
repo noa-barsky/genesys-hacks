@@ -71,6 +71,4 @@ require('./routes/statistics')(app, storage, statisticsApi)
 // Event Controllers
 require('./controllers/events')(workspaceApi, io, storage);
 
-server.listen(storage.port, () => {
-  console.info(`Server started on port: ${storage.port}`);
-});
+server.listen(process.env.port || 3002);

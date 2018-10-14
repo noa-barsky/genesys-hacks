@@ -58,7 +58,7 @@
     <div class="main_container" >
 
       <!-- top navigation -->
-      <div class="top_nav">
+      <div >
         <div class="nav_menu">
           <nav>
             <!-- <div class="nav toggle">
@@ -67,19 +67,21 @@
               </a>
             </div> -->
 
-            <ul class="nav navbar-nav navbar-right" style="width:100%">
+            <ul class="nav navbar-nav navbar-left" style="width:100%">
+  
+
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                   <img src="production/images/img.jpg" alt="">Victor G. Dodig
                   <span class=" fa fa-angle-down"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                <ul class="dropdown-menu dropdown-usermenu float-right" >
                   <li>
                     <a href="javascript:;"> Profile</a>
                   </li>
                   <li>
                     <a href="javascript:;">
-                      <span class="badge bg-red pull-right">50%</span>
+                      <span class="badge bg-red">50%</span>
                       <span>Settings</span>
                     </a>
                   </li>
@@ -88,64 +90,27 @@
                   </li>
                   <li>
                     <a href="login.html">
-                      <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                      <i class="fa fa-sign-out"></i> Log Out</a>
                   </li>
                 </ul>
               </li>
-
+              <li class="nav-item" >
+                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reasons for Calls</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Call Duration</a>
+                  </li>
               <li role="presentation" class="dropdown">
                 <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                   <!-- <i class="fa fa-envelope-o"></i> -->
                   <!-- <span class="badge bg-green">6</span> -->
                 </a>
                 <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+            
                   <li>
                     <a>
-                      <span class="image">
-                        <img src="production/images/img.jpg" alt="Profile Image" />
-                      </span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image">
-                        <img src="production/images/img.jpg" alt="Profile Image" />
-                      </span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image">
-                        <img src="production/images/img.jpg" alt="Profile Image" />
-                      </span>
-                      <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
-                      </span>
-                      <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="image">
-                        <img src="production/images/img.jpg" alt="Profile Image" />
-                      </span>
+
                       <span>
                         <span>John Smith</span>
                         <span class="time">3 mins ago</span>
@@ -175,20 +140,20 @@
       <div class="right_col" role="main">
         <!-- top tiles -->
         <div class="row tile_count">
-          <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count" style="text-align:center;">
+          <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count" style="text-align:center; padding-top:1%;">
             <span class="count_top" >
-              <i class="fa fa-user"></i>Average Duration Time</span>
+              <i class="fa fa-user" style="padding-right:1%;"></i>Average Duration Time</span>
             <div class="count" >5</div>
             <span class="count_bottom">
               <i class="green">4% </i> From last Week</span>
           </div>
-          <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count" style="text-align:center;">>
+          <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count" style="text-align:center; padding-top:1%;">
             <span class="count_top">
               <i class="fa fa-clock-o"></i>Average Daily Total Calls</span>
             <div class="count">30,000</div>
             <span class="count_bottom">
               <i class="green">
-                <i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+                <i class="fa fa-sort-asc" style="padding-right:2%;" ></i>3% </i> From last Week</span>
           </div>
 
           <!-- /top tiles -->
@@ -200,7 +165,7 @@
                 <div class="row x_title">
                   <div class="col-md-12">
 
-                    <div id="piechart" style="width: 80%; height: 80%; margin-left:10%; margin-top:-20px;">
+                    <div id="piechart" style="width: 80%; height: 80%; margin-left:10%; margin-top:-10px;">
                     </div>
 
                     <div class='overlay' style="margin-bottom: 200%;">

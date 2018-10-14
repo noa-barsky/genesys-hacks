@@ -162,8 +162,7 @@
                         <div class="col-md-8">
                           <div class="col-md-12">
                             <div class="col-md-12">
-                              <h2 style="font-size: 12px !important; width:100% !important;" 
-                              id="dictionary_key"></h2>
+                              <h2 style="font-size: 12px !important; width:100% !important;" id="dictionary_key"></h2>
                             </div>
                             <form>
                               <div class="form-group">
@@ -191,9 +190,9 @@
                             </form>
                           </div>
                         </div>
-                        
+
                         <div class="col-md-1">
-                          </div>
+                        </div>
                       </div>
                     </div>
 
@@ -568,6 +567,7 @@
         getUsers();
       });
 
+      // When it reaches a threshold value trigger an action to take.
       function threshold() {
         var above_ave = mean;
         for (var key in reasons_dict) {
@@ -586,6 +586,7 @@
         }
       };
 
+      // On Email button, send message to folk about information
       sendEmail.on('click', function (e) {
         var Cdata = {
           subject: emailSubject.val(),

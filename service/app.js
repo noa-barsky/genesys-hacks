@@ -28,7 +28,7 @@ const storage = {
   // This is the environment client secret
   clientSecret: "es33SiFOzMaaZ6KQ57jQ7L167owt2KOeaJq0BXEEdtlcY6V5",
   // This is your service port
-  port: 3002,
+  port: process.env.PORT,
   // This is needed as a header to authorize requests
   apiKey: "iB4b9IG8536FQCKiPlyXL9wJYfKbALKT4GZW9VGu"
 };

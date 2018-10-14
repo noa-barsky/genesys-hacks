@@ -77,12 +77,10 @@
 
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="authenticated.html" role="tab" aria-controls="profile"
-                aria-selected="false">Reasons for Calls</a>
+              <a class="nav-link" id="aut1" href="authenticated.html">Reasons for Calls</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="profile-tab" data-toggle="tab" href="authenticated2.html" role="tab" aria-controls="profile"
-                aria-selected="false">Call Duration</a>
+              <a class="nav-link" id="aut2" href="authenticated2.html">Call Duration</a>
             </li>
             <li role="presentation" class="dropdown">
               <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
@@ -162,11 +160,11 @@
                         </div>
 
                         <div class="col-md-8">
-
-                          <div class="col-md-8">
-                              <div class="col-md-12">
-                                  <h2 style="font-size: 12px !important; width:100% !important;" id="dictionary_key"></h2>
-                              </div>
+                          <div class="col-md-12">
+                            <div class="col-md-12">
+                              <h2 style="font-size: 12px !important; width:100% !important;" 
+                              id="dictionary_key"></h2>
+                            </div>
                             <form>
                               <div class="form-group">
                                 <!-- Name field -->
@@ -192,9 +190,10 @@
 
                             </form>
                           </div>
-                          <div class="col-md-1">
-                          </div>
                         </div>
+                        
+                        <div class="col-md-1">
+                          </div>
                       </div>
                     </div>
 
@@ -490,6 +489,9 @@
         chart.draw(data, options);
       };
 
+      // $("#aut2").on('click', function(){
+      //     window.location = 'authenticated2.html';
+      // });
       //Subscribe to statistics
       getStatValue = function (stateName) {
         google.charts.setOnLoadCallback(drawChart(0));

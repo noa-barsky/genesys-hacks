@@ -13,6 +13,7 @@
     "genesys-authentication-client-js": "latest",
     "genesys-provisioning-client-js": "^1.0.522",
     "genesys-workspace-client-js": "latest",
+    "gentelella": "^1.4.0",
     "morgan": "^1.9.0",
     "request": "^2.88.0",
     "socket.io": "^2.1.1",

@@ -1,0 +1,748 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" "text/css" href="./fonts/PressStart2P.css">
+    </link>
+    <link rel="stylesheet" "text/css" href="./style.css">
+    </link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script type="text/javascript" src="./libs/axios.min.js"></script>
+    <script type="text/javascript" src="./libs/socket.io.min.js"></script>
+    <script type="text/javascript" src="./libs/json-formater.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+        // Load the Visualization API library and the piechart library.
+        google.load('visualization', '1.0', { 'packages': ['corechart'] });
+     // ... draw the chart... 
+    </script>
+
+
+    <!-- Meta, title, CSS, favicons, etc. -->
+
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+    <title>Genesys Reports </title>
+
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="build/css/custom.min.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+    <div class="container body">
+        <div class="main_container">
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <!-- <div class="nav toggle">
+              <a id="menu_toggle">
+                <i class="fa fa-bars"></i>
+              </a>
+            </div> -->
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="production/images/img.jpg" alt="">Victor G. Dodig
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li>
+                                        <a href="javascript:;"> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;">Help</a>
+                                    </li>
+                                    <li>
+                                        <a href="login.html">
+                                            <i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-green">6</span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <li>
+                                        <a>
+                                            <span class="image">
+                                                <img src="production/images/img.jpg" alt="Profile Image" />
+                                            </span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were
+                                                where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image">
+                                                <img src="production/images/img.jpg" alt="Profile Image" />
+                                            </span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were
+                                                where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image">
+                                                <img src="production/images/img.jpg" alt="Profile Image" />
+                                            </span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were
+                                                where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <span class="image">
+                                                <img src="production/images/img.jpg" alt="Profile Image" />
+                                            </span>
+                                            <span>
+                                                <span>John Smith</span>
+                                                <span class="time">3 mins ago</span>
+                                            </span>
+                                            <span class="message">
+                                                Film festivals used to be do-or-die moments for movie makers. They were
+                                                where...
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="text-center">
+                                            <a>
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <!-- top tiles -->
+                <div class="row tile_count">
+                    <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+                        <span class="count_top">
+                            <i class="fa fa-user"></i>Average Duration Time</span>
+                        <div class="count">5</div>
+                        <span class="count_bottom">
+                            <i class="green">4% </i> From last Week</span>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12 tile_stats_count">
+                        <span class="count_top">
+                            <i class="fa fa-clock-o"></i>Average Daily Total Calls</span>
+                        <div class="count">30,000</div>
+                        <span class="count_bottom">
+                            <i class="green">
+                                <i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+                    </div>
+
+                    <!-- /top tiles -->
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="dashboard_graph">
+
+                                <div class="row x_title">
+                                    <div class="col-md-12">
+
+                                        <div id="piechart" style="width: 80%; height: 80%; margin-left:10%;">
+                                        </div>
+
+                                        <div class='overlay' style="margin-bottom: 200%;">
+                                            <div class='popup'>
+                                                <div class='close'>&#10006;</div>
+                                                <!-- close button-->
+                                                <!-- title food the popup-->
+                                                <div class="col-md-12">
+                                                    <div class="col-md-2">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <h2 id="dictionary_key" style="text-align:center;"></h2>
+
+                                                        <form>
+                                                            <div class="form-group">
+                                                                <!-- Name field -->
+                                                                <label class="control-label " for="name">Name</label>
+                                                                <input class="form-control" id="name" name="name" type="text"
+                                                                    value="customercare@cibc.com" />
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <!-- To field -->
+                                                                <label class="control-label " for="to">To</label>
+                                                                <input class="form-control" id="To" name="To"
+                                                                    type="text" />
+                                                            </div>
+
+
+                                                            <div class="form-group">
+                                                                <!-- Subject field -->
+                                                                <label class="control-label " for="subject">Subject</label>
+                                                                <input class="form-control" id="subject" name="subject"
+                                                                    type="text" />
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <!-- Message field -->
+                                                                <label class="control-label " for="message">Message</label>
+                                                                <textarea class="form-control" cols="40" id="message"
+                                                                    name="message" rows="10"></textarea>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <button class="btn btn-primary " name="submit" id="sendEmail"
+                                                                    type="submit">Submit</button>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br />
+
+                        <div class="row">
+
+
+
+
+
+
+
+                            <!-- end of weather widget -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+
+
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="vendors/Flot/jquery.flot.js"></script>
+    <script src="vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="vendors/Flot/jquery.flot.time.js"></script>
+    <script src="vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="vendors/moment/min/moment.min.js"></script>
+    <script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.min.js"></script>
+
+
+
+    <div id="app" style="display:none;">
+        <div class="header">
+            <h1>Authenticated view</h1>
+            <div class="separator"></div>
+            <div class="actions">
+                <button id="state-toggle">Set Ready</button>
+                <input id="target" />
+                <button id="search">Search</button>
+                <button id="get-users">Get Users</button>
+                <button id="clear" style="float: right;">Clear</button>
+                <button id="logout" style="float: right;">Logout</button>
+            </div>
+            <div class="separator"></div>
+            <div class="statistics">
+                <label>ObjectId:</label>
+                <input id="objectId" />
+                <label>ObjectType:</label>
+                <input id="objectType" />
+                <label>statName:</label>
+                <input id="statName" />
+                <button id="getStatValue">Get Value</button>
+            </div>
+            <div class="separator"></div>
+        </div>
+        <div class="content">
+            <div class="states">
+                <div>
+                    <span>Voice State:</span>
+                    <span id="voice-state">Unknown</span>
+                </div>
+                <div>
+                    <span>Possible actions:</span>
+                </div>
+                <div class="call-actions">
+                    <button id="Answer">Answer</button>
+                    <button id="Hold">Hold</button>
+                    <button id="Retrieve">Retrieve</button>
+                    <button id="Release">Release</button>
+                </div>
+            </div>
+            <div id="logs" class="logs">
+                <div id="logs-container"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+
+
+    <img id="secret" src="./secret/nyan.gif" />
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var emailSubject = $("#subject");
+            var emailTo = $("#To");
+            var emailMessage = $("#message");
+            var emailName = $("#name");
+            var sendSMS_Callback = $("#sendEmail");
+            var dictionary_key = $("#dictionary_key");
+            var keyDK = "";
+
+            // $('.overlay').hide();
+            // Not so interesting stuff there
+            const JSONFormatter = window.JSONFormatter.default;
+            const JSONFormatterConfig = {
+                animateOpen: false,
+                animateClose: false,
+                theme: 'dark'
+            }
+
+            // Not there either
+            window.state = 'Unknown';
+            window.callId = null;
+            var formatted = null;
+
+            const voiceStateToggle = document.getElementById('state-toggle');
+            const logsContainer = document.getElementById('logs-container');
+            const voiceState = document.getElementById('voice-state');
+
+            setCallActions = function (actions) {
+                var possibleActions = ['Answer', 'Release', 'Hold', 'Retrieve'];
+                for (var i = 0; i < actions.length; i++) {
+                    document.getElementById(actions[i]).style.display = 'block';
+                    possibleActions.splice(possibleActions.indexOf(actions[i]), 1);
+                }
+                for (var j = 0; j < possibleActions.length; j++) {
+                    document.getElementById(possibleActions[j]).style.display = 'none';
+                }
+            }
+
+            // Event subscriptions
+            const socket = io();
+            // When the state of an agent changes
+            socket.on('voice-update', function (data) {
+                formatted = new JSONFormatter(data, 2, JSONFormatterConfig);
+                logsContainer.appendChild(formatted.render());
+                if (data.dn && data.dn.agentState) {
+                    window.state = data.dn.agentState;
+                    voiceState.innerText = window.state;
+                    if (window.state !== 'Ready') {
+                        voiceStateToggle.innerText = 'Set Ready';
+                    } else {
+                        voiceStateToggle.innerText = 'Set NotReady';
+                    }
+                }
+            });
+            // When the state of a call changes
+            socket.on('call-update', function (data) {
+                if (data.call && data.call.state && data.call.id) {
+                    window.callId = data.call.id;
+                    switch (data.call.state) {
+                        default: case 'Ringing':
+                            setCallActions(['Answer', 'Release'])
+                            break;
+                        case 'Established':
+                            setCallActions(['Hold', 'Release'])
+                            break;
+                        case 'Held':
+                            setCallActions(['Retrieve', 'Release'])
+                            break;
+                        case 'Released':
+                            setCallActions([])
+                            window.callId = null;
+                            break;
+                    }
+                }
+                formatted = new JSONFormatter(data, 2, JSONFormatterConfig);
+                logsContainer.appendChild(formatted.render());
+            });
+
+            // Get Current Session (on error will redirect to index.html)
+            currentSession = function () {
+                axios.get('/current-session')
+                    .then(function (response) {
+                        formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+                        logsContainer.appendChild(formatted.render());
+                    })
+                    .catch(function (error) {
+                        window.location = '/'
+                    })
+            }
+            // Logout, will redirect to index.html
+            logout = function () {
+                window.location = '/logout'
+            }
+            // Search for internal targets (try with 'Agent')
+            // PS: Don't type 'Easter Egg', it does nothing awesome...
+            search = function () {
+                var value = document.getElementById('target').value;
+                if (value === 'Easter Egg') {
+                    doSomethingAwesome();
+                } else {
+                    axios.get('/targets/search', {
+                        params: {
+                            search: value
+                        }
+                    })
+                        .then(function (response) {
+                            // On success
+                            formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+                            logsContainer.appendChild(formatted.render());
+                        })
+                        .catch(function (error) {
+                            // On error
+                            formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
+                            logsContainer.appendChild(formatted.render());
+                        })
+                }
+            }
+            // Get users from provisioning api
+            getUsers = function () {
+
+                axios.get('/provisioning/get-users')
+                    .then(function (response) {
+                        // On success
+                        formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+                        logsContainer.appendChild(formatted.render());
+                    })
+                    .catch(function (error) {
+                        // On error
+                        formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
+                        logsContainer.appendChild(formatted.render());
+                    })
+            }
+
+            var reasons_dict = {
+                "InboundCalls": 1000, "OutboundCalls": 1000, "MissedCalls": 1000,
+                "HoldDuration": 1000, "RefusedCalls": 1000, "ReadyDuration": 1000
+            };
+
+            var reasons_mapping = {
+                "InboundCalls": "Average Wait Times", "OutboundCalls": "Average Redirects Wait Times",
+                "MissedCalls": "Needs Domain Experts Advice",
+                "HoldDuration": "Investments", "RefusedCalls": "Hours and Location", "ReadyDuration": "Loans"
+            }
+
+
+            var mean = 3000;
+            google.charts.load('current', { 'packages': ['corechart'] });
+
+            function drawChart(value, stateName) {
+
+                var value = Math.random();
+                reasons_dict[stateName] += value * 1000;
+
+                var data = google.visualization.arrayToDataTable([
+                    ['Reason for Call', 'Number of Calls', 'Average'],
+                    ['Average Wait Times', reasons_dict["InboundCalls"], mean],
+                    ['Average Redirects Wait Times', reasons_dict["OutboundCalls"], mean],
+                    ['Needs Domain Experts Advice', reasons_dict["MissedCalls"], mean]
+                    //   ['Investments', reasons_dict["HoldDuration"], mean],
+                    //   ['Hours and Location', reasons_dict["RefusedCalls"], mean],
+                    //   ['Loans', reasons_dict["ReadyDuration"], mean]
+                ]);
+
+                var options = {
+                    title: 'Wait Times',
+                    //   seriesType: "bars",
+                    //   series: { 1: { type: 'line' } }
+
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                chart.draw(data, options);
+            };
+
+            //Subscribe to statistics
+            getStatValue = function (stateName) {
+                google.charts.setOnLoadCallback(drawChart(0));
+
+                axios.get('/statistics/getValue', {
+                    params: {
+                        objectId: "SuhasK",
+                        objectType: "Agent",
+                        statName: stateName
+                    }
+                })
+                    .then(function (response) {
+                        // On success
+                        formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+                        logsContainer.appendChild(formatted.render());
+                        threshold();
+                        drawChart(formatted.json.statistics.data.statistic.value.intValue, stateName);
+                    })
+                    .catch(function (error) {
+                        // On error
+                        formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
+                        logsContainer.appendChild(formatted.render());
+                    })
+            };
+
+            // Set the agent Ready if not, otherwise will set to Not Ready
+            toggleState = function () {
+                axios.get('/voice/state', {
+                    params: {
+                        state: window.state
+                    }
+                })
+                    .then(function (response) {
+                        formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+                        logsContainer.appendChild(formatted.render());
+                    })
+                    .catch(function (error) {
+                        formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
+                        logsContainer.appendChild(formatted.render());
+                    })
+            };
+
+            doSomethingAwesome = function () {
+                console.log();
+                document.getElementById('secret').style.display = 'block';
+                setTimeout(function () {
+                    document.getElementById('secret').style.display = 'none';
+                }, 10000)
+            }
+            // Send call actions, based on the button id.
+            sendCallAction = function (action) {
+                axios.get('/voice/call/' + action, {
+                    params: {
+                        id: window.callId
+                    }
+                })
+                    .then(function (response) {
+                        formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+                        logsContainer.appendChild(formatted.render());
+                    })
+                    .catch(function (error) {
+                        formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
+                        logsContainer.appendChild(formatted.render());
+                    })
+            };
+
+            document.getElementById('logout').addEventListener('click', () => {
+                logout();
+            });
+            document.getElementById('search').addEventListener('click', () => {
+                search();
+            });
+            document.getElementById('get-users').addEventListener('click', () => {
+                getUsers();
+            });
+
+            function threshold() {
+                var above_ave = mean;
+                for (var key in reasons_dict) {
+                    if (key !== "undefined") {
+                        if (reasons_dict[key] > above_ave) {
+                            clearInterval(interval);
+                            dictionary_key.empty();
+                            dictionary_key.append('Send Email to Clients about ');
+                            dictionary_key.append(reasons_mapping[key]);
+                            keyDK = key;
+                            $('.overlay').show();
+                            break;
+                            return true;
+                        }
+                    }
+                }
+            };
+
+            sendSMS_Callback.on('click', function (e) {
+                var Cdata = {
+                    subject: emailSubject.val(),
+                    name: emailName.val(),
+                    to: emailTo.val(),
+                    message: emailMessage.val()
+                };
+                e.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: '/sendSMS_Callback',
+                    data: Cdata,
+                    success: function (ht) {
+                        // clearInterval(interval);
+                        reasons_dict[keyDK] = reasons_dict[keyDK] * 0.05;
+                        $('.overlay').hide();
+                    }
+                    // contentType: "application/json"
+                });
+                return false;
+            });
+
+            $('.close').click(function () {
+                $('.overlay').hide();
+            })
+
+            // Get Stat Value call Update statistics every 1 seconds and timeout after set time
+            function GetAllStatistics() {
+                getStatValue("InboundCalls");
+                getStatValue("OutboundCalls");
+                getStatValue("HoldDuration");
+                getStatValue("MissedCalls");
+                getStatValue("RefusedCalls");
+                getStatValue("ReadyDuration");
+                mean += mean;
+
+                for (var key in reasons_dict) {
+                    if (key !== "undefined")
+                        mean += reasons_dict[key];
+                }
+                mean = mean / 4;
+            };
+
+            GetAllStatistics();
+
+            // Update report every second
+            // interval = function () {
+            //     setInterval(GetAllStatistics,
+            //         1000);
+            // };
+
+
+            // interval();
+            // Set Timeout Interval
+            timeout = function () {
+                setTimeout(() => {
+                    clearInterval(interval);
+                }, 100000);
+            };
+
+
+            document.getElementById('clear').addEventListener('click', () => {
+                logsContainer.innerHTML = '';
+            });
+            document.getElementById('state-toggle').addEventListener('click', () => {
+                toggleState();
+            });
+            // Call Actions
+            document.getElementById('Answer').addEventListener('click', () => {
+                sendCallAction('Answer');
+            });
+            document.getElementById('Release').addEventListener('click', () => {
+                sendCallAction('Release');
+            });
+            document.getElementById('Hold').addEventListener('click', () => {
+                sendCallAction('Hold');
+            });
+            document.getElementById('Retrieve').addEventListener('click', () => {
+                sendCallAction('Retrieve');
+            });
+
+            // Check session at first 
+            currentSession();
+        });
+
+    </script>
+</body>
+
+</html>

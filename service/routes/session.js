@@ -111,9 +111,9 @@ module.exports = function (app, io, workspaceApi, storage, request, statisticsAp
   // Logging in (redirect to auth page)
   app.get('/login', (req, res) => {
     //To log in with a login page
-    loginWithLoginPage(req, res);
+    // loginWithLoginPage(req, res);
     //To log in without a login page (userName & password available in the request to get auth token)
-    //loginWithoutLoginPage(req,res);
+    loginWithoutLoginPage(req,res);
   });
 
   // Logout and redirect to home

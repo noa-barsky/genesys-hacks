@@ -60,4 +60,16 @@ module.exports = function (app, workspaceApi) {
     }
   });
 
+
+  app.get('/voice/calls', async (req, res) => {
+    try {
+      const callId = req.query.id;
+      var response = await workspaceApi.voice.makeCall();
+      res.send(response);
+    } catch (error) {
+      res.send(error);
+    }
+  });
+
+
 }

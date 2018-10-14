@@ -68,7 +68,7 @@
   </div>
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <div id="piechart" style="width: 900px; height: 500px;">
+  <div id="piechart" style="width: 1px; height: 1px;">
   </div>
 
   <div class='overlay'>
@@ -372,7 +372,7 @@
             if (reasons_dict[key] > above_ave) {
               clearInterval(interval);
               dictionary_key.empty();
-              dictionary_key.append('More informal about ');
+              dictionary_key.append('Send Email to Clients about ');
               dictionary_key.append(reasons_mapping[key]);
               keyDK = key;
               $('.overlay').show();
@@ -429,12 +429,12 @@
       GetAllStatistics();
 
       // Update report every second
-      interval = function(){
-        setInterval(GetAllStatistics,
-        10000);
-      };
+      // interval = function(){
+      //   setInterval(GetAllStatistics,
+      //   10000);
+      // };
 
-      interval();
+      // interval();
       // Set Timeout Interval
       timeout = function() {
         setTimeout(() => {

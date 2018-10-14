@@ -24,7 +24,19 @@
         login();
       });
       $("#sendMessage").on('click',function(){
-      
+        axios.get('/voice/calls')
+          .then(function (response) {
+            // On success
+            console.log(response);
+            // formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+            // logsContainer.appendChild(formatted.render());
+          })
+          .catch(function (error) {
+            // On error
+            console.log(error);
+            // formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
+            // logsContainer.appendChild(formatted.render());
+          })
       })
 
     </script>

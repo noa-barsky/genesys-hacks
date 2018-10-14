@@ -190,48 +190,24 @@
         })
       }
 
-      var exchange, general, hl, loans, invest, mobile, mean;
-        exchange = 1000;
-        general = 1000;
-        hl = 1000;
-        loans = 1000;
-        mobile = 1000;
-        invest = 1000;
-        mean = 20000;
+      var reasons_dict ={ "InboundCalls": 1000, "OutboundCalls": 1000, "MissedCalls": 1000, "HoldDuration": 1000, "RefusedCalls": 1000, "ReadyDuration": 1000};
+      var mean = 5000;
       google.charts.load('current', {'packages':['corechart']});
       function drawChart(value, stateName) {
     
         var value = Math.random();
+        reasons_dict[stateName] += value * 1000;
         
-        switch(stateName) {
-          case "InboundCalls":
-            general += value * 1000;
-              break;
-          case "OutBoundCalls":
-            exchange += value * 1000;
-              break;
-          case "MissedCalls":
-            hl += value * 1000;
-              break;
-          case "HoldDuration":
-            loans += value * 1000;
-              break;
-          case "RefusedCalls":
-            invest += value * 1000;
-              break;
-          case "ReadyDuration":
-            mobile+= value * 1000;
-              break;
-      }
+      
        
         var data = google.visualization.arrayToDataTable([
           ['Reason for Call', 'Number of Calls', 'Average'],
-          ['Mobile Banking Inquiry',   mobile, mean],
-          ['Exchange Rate',  exchange, mean],
-          ['General Banking Inquiry', general, mean],
-          ['Investments',   invest, mean],
-          ['Hours and Location',    hl, mean],
-          ['Loans',  loans,mean]
+          ['Mobile Banking Inquiry',   reasons_dict["InboundCalls"], mean],
+          ['Exchange Rate',  reasons_dict["OutboundCalls"], mean],
+          ['General Banking Inquiry', reasons_dict["MissedCalls"], mean],
+          ['Investments',   reasons_dict["HoldDuration"], mean],
+          ['Hours and Location',    reasons_dict["RefusedCalls"], mean],
+          ['Loans',  reasons_dict["ReadyDuration"], mean]
 
         ]);
 
@@ -338,6 +314,21 @@
       document.getElementById('get-users').addEventListener('click', () => {
         getUsers();
       });
+      function threshold() {
+        var above_ave = mean;
+          for (var key in reasons_dict){
+          if (key !== "undefined") {
+            if (reasons_dict[key] > above_ave) {
+              clearInterval(interval);
+              alert("Need a google chats pop-up");
+              break;
+              return true;
+            }
+          }
+        }
+      }
+        
+        
       
       // Get Stat Value call Update statistics every 1 seconds and timeout after set time
       function GetAllStatistics(){
@@ -346,12 +337,20 @@
 
         getStatValue("InboundCalls"); 
         getStatValue("OutboundCalls"); 
-        getStatValue("ConsultCalls"); 
         getStatValue("HoldDuration"); 
         getStatValue("MissedCalls"); 
         getStatValue("RefusedCalls"); 
         getStatValue("ReadyDuration"); 
-        mean = (mean + general + loans + exchange + hl + invest + mobile) / 6;
+       
+
+        for (var key in reasons_dict){
+          if (key !== "undefined")
+          mean += reasons_dict[key];
+        }
+        mean = mean / 6;
+        threshold();
+        
+
 
           // console.log(inbound, outbound);
         };
@@ -366,11 +365,9 @@
         setTimeout(() => {
           clearInterval(interval);  
         }, 60000);
-        function threshold (){
 
-        }
       
- 
+
 
   
       document.getElementById('clear').addEventListener('click', () => {

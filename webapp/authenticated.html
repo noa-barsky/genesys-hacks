@@ -60,7 +60,10 @@
       </div>
     </div>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-       <div id="piechart" style="width: 900px; height: 500px;"></div>
+    
+       <div id="piechart" style="width: 900px; height: 500px;">
+   
+       </div>
    
     <img id="secret" src="./secret/nyan.gif"/>
     <script type="text/javascript">
@@ -173,6 +176,7 @@
       }
       // Get users from provisioning api
       getUsers = function () {
+      
         axios.get('/provisioning/get-users')
         .then(function (response) {
           // On success
@@ -186,33 +190,74 @@
         })
       }
 
-      //Subscribe to statistics
-      getStatValue = function(stateName) {
- 
+      var exchange, general, hl, loans, invest, mobile;
+        exchange = 1000;
+        general = 1000;
+        hl = 1000;
+        loans = 1000;
+        mobile = 1000;
+        invest = 1000;
       google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart(0));
-			// setInterval(drawChart, 1000);
-      
-      function drawChart(value) {
-        // value = Math.random();
-        value = value + Math.random()*10;
+      function drawChart(value, stateName) {
+    
+        var value = Math.random();
+        
+        switch(stateName) {
+          case "InboundCalls":
+            general += value * 1000;
+              break;
+          case "OutBoundCalls":
+            exchange += value * 1000;
+              break;
+          case "MissedCalls":
+            hl += value * 1000;
+              break;
+          case "HoldDuration":
+            loans += value * 1000;
+              break;
+          case "RefusedCalls":
+            invest += value * 1000;
+              break;
+          case "ReadyDuration":
+            mobile+= value * 1000;
+              break;
+      }
+       
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     value],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Reason for Call', 'Number of Calls'],
+          ['Mobile Banking Inquiry',   mobile],
+          ['Exchange Rate',  exchange],
+          ['General Banking Inquiry', general],
+          ['Investments',   invest],
+          ['Hours and Location',    hl],
+          ['Loans',  loans]
+
         ]);
 
         var options = {
-          title: 'My Daily Activities'
+          title: 'Reasons for Calls',
+          seriesType: "bars",
+          series: {6: { type: 'line'}}
+          
         };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('piechart'));
+        var chart = new google.visualization.ComboChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
       };
  
+
+
+ 
+
+      //Subscribe to statistics
+      getStatValue = function(stateName) {
+ 
+      
+      google.charts.setOnLoadCallback(drawChart(0));
+			// setInterval(drawChart, 1000);
+      
+
  
         axios.get('/statistics/getValue', {
             params: {
@@ -225,7 +270,7 @@
             // On success
             formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
             logsContainer.appendChild(formatted.render());
-            drawChart(formatted.json.statistics.data.statistic.value.intValue);
+            drawChart(formatted.json.statistics.data.statistic.value.intValue, stateName);
           })
           .catch(function (error) {
             // On error
@@ -233,6 +278,15 @@
             logsContainer.appendChild(formatted.render());
           })
       }
+
+
+
+
+
+
+
+
+
 
       // Set the agent Ready if not, otherwise will set to Not Ready
       toggleState = function () {
@@ -255,7 +309,7 @@
         document.getElementById('secret').style.display = 'block';
         setTimeout(function () {
           document.getElementById('secret').style.display = 'none';
-        }, 5000)
+        }, 10000)
       }
       // Send call actions, based on the button id.
       sendCallAction = function (action) {
@@ -285,30 +339,37 @@
       });
       
       // Get Stat Value call Update statistics every 1 seconds and timeout after set time
-      $("#getStatValue").on('click', function(){
-        
-        function GetAllStatistics(){
-          getStatValue("InboundCalls"); 
-          getStatValue("OutboundCalls"); 
+      function GetAllStatistics(){
+          // getStatValue("InboundCalls"); 
+          // getStatValue("OutboundCalls"); 
+
+        getStatValue("InboundCalls"); 
+        getStatValue("OutboundCalls"); 
+        getStatValue("ConsultCalls"); 
+        getStatValue("HoldDuration"); 
+        getStatValue("MissedCalls"); 
+        getStatValue("RefusedCalls"); 
+        getStatValue("ReadyDuration"); 
           // console.log(inbound, outbound);
         };
-
+        GetAllStatistics();
+      
+  
         // Update report every second
         interval = setInterval(GetAllStatistics,
-        1000);
+        5000);
 
         // Set Timeout Interval
         setTimeout(() => {
           clearInterval(interval);  
-        }, 10000);
- 
-      });
+        }, 60000);
+        function threshold (){
+
+        }
+      
  
 
-      // document.getElementById('getStatValue').addEventListener('click', () => {
-      //   getStatValue("InboundCalls");
-      // });
-      
+  
       document.getElementById('clear').addEventListener('click', () => {
         logsContainer.innerHTML = '';
       });

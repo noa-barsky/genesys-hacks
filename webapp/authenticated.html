@@ -1,72 +1,122 @@
 <html>
-  <head>
-    <title>Workspace API Sample</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" "text/css" href="./fonts/PressStart2P.css"></link>
-    <link rel="stylesheet" "text/css" href="./style.css"></link>
-    <script type="text/javascript" src="./libs/axios.min.js"></script>
-    <script type="text/javascript" src="./libs/socket.io.min.js"></script>
-    <script type="text/javascript" src="./libs/json-formater.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
 
-  // Load the Visualization API library and the piechart library.
-  google.load('visualization', '1.0', {'packages':['corechart']});
+<head>
+  <title>Workspace API Sample</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" "text/css" href="./fonts/PressStart2P.css">
+  </link>
+  <link rel="stylesheet" "text/css" href="./style.css">
+  </link>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <script type="text/javascript" src="./libs/axios.min.js"></script>
+  <script type="text/javascript" src="./libs/socket.io.min.js"></script>
+  <script type="text/javascript" src="./libs/json-formater.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+
+    // Load the Visualization API library and the piechart library.
+    google.load('visualization', '1.0', { 'packages': ['corechart'] });
      // ... draw the chart...
-</script>
-  </head>
-  <body>
-    <div id="app">
-      <div class="header">
-        <h1>Authenticated view</h1>
-        <div class="separator"></div>
-        <div class="actions">
-          <button id="state-toggle">Set Ready</button>
-          <input id="target"/>
-          <button id="search">Search</button>
-          <button id="get-users">Get Users</button>
-          <button id="clear" style="float: right;">Clear</button>
-          <button id="logout" style="float: right;">Logout</button>
-        </div>
-        <div class="separator"></div>
-        <div class="statistics">
-          <label>ObjectId:</label><input id="objectId"/>
-          <label>ObjectType:</label><input id="objectType"/>
-          <label>statName:</label><input id="statName"/>
-          <button id="getStatValue">Get Value</button>
-        </div>
-        <div class="separator"></div>
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="header">
+      <h1>Authenticated view</h1>
+      <div class="separator"></div>
+      <div class="actions">
+        <button id="state-toggle">Set Ready</button>
+        <input id="target" />
+        <button id="search">Search</button>
+        <button id="get-users">Get Users</button>
+        <button id="clear" style="float: right;">Clear</button>
+        <button id="logout" style="float: right;">Logout</button>
       </div>
-      <div class="content">
-        <div class="states">
-          <div>
-            <span>Voice State:</span> <span id="voice-state">Unknown</span>
-          </div>
-          <div>
-            <span>Possible actions:</span>
-          </div>
-          <div class="call-actions">
-            <button id="Answer">Answer</button>
-            <button id="Hold">Hold</button>
-            <button id="Retrieve">Retrieve</button>
-            <button id="Release">Release</button>
-          </div>
+      <div class="separator"></div>
+      <div class="statistics">
+        <label>ObjectId:</label><input id="objectId" />
+        <label>ObjectType:</label><input id="objectType" />
+        <label>statName:</label><input id="statName" />
+        <button id="getStatValue">Get Value</button>
+      </div>
+      <div class="separator"></div>
+    </div>
+    <div class="content">
+      <div class="states">
+        <div>
+          <span>Voice State:</span> <span id="voice-state">Unknown</span>
         </div>
-        <div id="logs" class="logs">
-          <div id="logs-container"></div>
+        <div>
+          <span>Possible actions:</span>
+        </div>
+        <div class="call-actions">
+          <button id="Answer">Answer</button>
+          <button id="Hold">Hold</button>
+          <button id="Retrieve">Retrieve</button>
+          <button id="Release">Release</button>
+        </div>
+      </div>
+      <div id="logs" class="logs">
+        <div id="logs-container"></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <div id="piechart" style="width: 900px; height: 500px;">
+  </div>
+
+  <div class='overlay'>
+    <div class='popup'>
+      <div class='close'>&#10006;</div><!-- close button-->
+      <h2>Send Email to Clients</h2> <!-- title food the popup-->
+      <div class="col-md-12">
+
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+          <form>
+            <div class="form-group">
+              <!-- Name field -->
+              <label class="control-label " for="name">Name</label>
+              <input class="form-control" id="name" name="name" type="text" value="customercare@cibc.com" />
+            </div>
+
+            <div class="form-group">
+              <!-- Subject field -->
+              <label class="control-label " for="subject">Subject</label>
+              <input class="form-control" id="subject" name="subject" type="text" />
+            </div>
+
+            <div class="form-group">
+              <!-- Message field -->
+              <label class="control-label " for="message">Message</label>
+              <textarea class="form-control" cols="40" id="message" name="message" rows="10"></textarea>
+            </div>
+
+            <div class="form-group">
+              <button class="btn btn-primary " name="submit" type="submit">Submit</button>
+            </div>
+
+          </form>
+        </div>
+        <div class="col-md-1">
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
-       <div id="piechart" style="width: 900px; height: 500px;">
-   
-       </div>
-   
-    <img id="secret" src="./secret/nyan.gif"/>
-    <script type="text/javascript">
+  </div>
+
+
+  <img id="secret" src="./secret/nyan.gif" />
+  <script type="text/javascript">
+
+    $(document).ready(function () {
       // Not so interesting stuff there
       const JSONFormatter = window.JSONFormatter.default;
       const JSONFormatterConfig = {
@@ -138,13 +188,13 @@
       // Get Current Session (on error will redirect to index.html)
       currentSession = function () {
         axios.get('/current-session')
-        .then(function (response) {
-          formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
-          logsContainer.appendChild(formatted.render());
-        })
-        .catch(function (error) {
-          window.location = '/'
-        })
+          .then(function (response) {
+            formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+            logsContainer.appendChild(formatted.render());
+          })
+          .catch(function (error) {
+            window.location = '/'
+          })
       }
       // Logout, will redirect to index.html
       logout = function () {
@@ -162,6 +212,22 @@
               search: value
             }
           })
+            .then(function (response) {
+              // On success
+              formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+              logsContainer.appendChild(formatted.render());
+            })
+            .catch(function (error) {
+              // On error
+              formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
+              logsContainer.appendChild(formatted.render());
+            })
+        }
+      }
+      // Get users from provisioning api
+      getUsers = function () {
+
+        axios.get('/provisioning/get-users')
           .then(function (response) {
             // On success
             formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
@@ -172,81 +238,55 @@
             formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
             logsContainer.appendChild(formatted.render());
           })
-        }
-      }
-      // Get users from provisioning api
-      getUsers = function () {
-      
-        axios.get('/provisioning/get-users')
-        .then(function (response) {
-          // On success
-          formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
-          logsContainer.appendChild(formatted.render());
-        })
-        .catch(function (error) {
-          // On error
-          formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
-          logsContainer.appendChild(formatted.render());
-        })
       }
 
-      var reasons_dict ={ "InboundCalls": 1000, "OutboundCalls": 1000, "MissedCalls": 1000, "HoldDuration": 1000, "RefusedCalls": 1000, "ReadyDuration": 1000};
-      var mean = 5000;
-      google.charts.load('current', {'packages':['corechart']});
+      var reasons_dict = { "InboundCalls": 1000, "OutboundCalls": 1000, "MissedCalls": 1000, "HoldDuration": 1000, "RefusedCalls": 1000, "ReadyDuration": 1000 };
+      var mean = 3000;
+      google.charts.load('current', { 'packages': ['corechart'] });
       function drawChart(value, stateName) {
-    
+
         var value = Math.random();
         reasons_dict[stateName] += value * 1000;
-        
-      
-       
+
         var data = google.visualization.arrayToDataTable([
           ['Reason for Call', 'Number of Calls', 'Average'],
-          ['Mobile Banking Inquiry',   reasons_dict["InboundCalls"], mean],
-          ['Exchange Rate',  reasons_dict["OutboundCalls"], mean],
+          ['Mobile Banking Inquiry', reasons_dict["InboundCalls"], mean],
+          ['Exchange Rate', reasons_dict["OutboundCalls"], mean],
           ['General Banking Inquiry', reasons_dict["MissedCalls"], mean],
-          ['Investments',   reasons_dict["HoldDuration"], mean],
-          ['Hours and Location',    reasons_dict["RefusedCalls"], mean],
-          ['Loans',  reasons_dict["ReadyDuration"], mean]
+          ['Investments', reasons_dict["HoldDuration"], mean],
+          ['Hours and Location', reasons_dict["RefusedCalls"], mean],
+          ['Loans', reasons_dict["ReadyDuration"], mean]
 
         ]);
 
         var options = {
           title: 'Reasons for Calls',
           seriesType: "bars",
-          series: {1: { type: 'line'}}
-          
+          series: { 1: { type: 'line' } }
+
         };
 
         var chart = new google.visualization.ComboChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
       };
- 
-
-
- 
 
       //Subscribe to statistics
-      getStatValue = function(stateName) {
- 
-      
-      google.charts.setOnLoadCallback(drawChart(0));
-			// setInterval(drawChart, 1000);
-      
+      getStatValue = function (stateName) {
+        google.charts.setOnLoadCallback(drawChart(0));
 
- 
         axios.get('/statistics/getValue', {
-            params: {
-              objectId: "SuhasK",
-              objectType: "Agent",
-              statName: stateName
-            }
-          })
+          params: {
+            objectId: "SuhasK",
+            objectType: "Agent",
+            statName: stateName
+          }
+        })
           .then(function (response) {
             // On success
             formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
             logsContainer.appendChild(formatted.render());
+            threshold();
             drawChart(formatted.json.statistics.data.statistic.value.intValue, stateName);
           })
           .catch(function (error) {
@@ -272,14 +312,14 @@
             state: window.state
           }
         })
-        .then(function (response) {
-          formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
-          logsContainer.appendChild(formatted.render());
-        })
-        .catch(function (error) {
-          formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
-          logsContainer.appendChild(formatted.render());
-        })
+          .then(function (response) {
+            formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+            logsContainer.appendChild(formatted.render());
+          })
+          .catch(function (error) {
+            formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
+            logsContainer.appendChild(formatted.render());
+          })
       }
       doSomethingAwesome = function () {
         console.log();
@@ -295,14 +335,14 @@
             id: window.callId
           }
         })
-        .then(function (response) {
-          formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
-          logsContainer.appendChild(formatted.render());
-        })
-        .catch(function (error) {
-          formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
-          logsContainer.appendChild(formatted.render());
-        })
+          .then(function (response) {
+            formatted = new JSONFormatter(response.data, 2, JSONFormatterConfig);
+            logsContainer.appendChild(formatted.render());
+          })
+          .catch(function (error) {
+            formatted = new JSONFormatter(error, 2, JSONFormatterConfig);
+            logsContainer.appendChild(formatted.render());
+          })
       }
 
       document.getElementById('logout').addEventListener('click', () => {
@@ -314,62 +354,59 @@
       document.getElementById('get-users').addEventListener('click', () => {
         getUsers();
       });
+
       function threshold() {
         var above_ave = mean;
-          for (var key in reasons_dict){
+        for (var key in reasons_dict) {
           if (key !== "undefined") {
             if (reasons_dict[key] > above_ave) {
               clearInterval(interval);
-              alert("Need a google chats pop-up");
+              $('.overlay').show();
               break;
               return true;
             }
           }
         }
-      }
-        
-        
-      
+      };
+      $('.overlay').show();
+
+      $('.close').click(function () {
+        $('.overlay').hide();
+      })
+
       // Get Stat Value call Update statistics every 1 seconds and timeout after set time
-      function GetAllStatistics(){
-          // getStatValue("InboundCalls"); 
-          // getStatValue("OutboundCalls"); 
-
-        getStatValue("InboundCalls"); 
-        getStatValue("OutboundCalls"); 
-        getStatValue("HoldDuration"); 
-        getStatValue("MissedCalls"); 
-        getStatValue("RefusedCalls"); 
-        getStatValue("ReadyDuration"); 
-       
-
-        for (var key in reasons_dict){
-          if (key !== "undefined")
-          mean += reasons_dict[key];
-        }
-        mean = mean / 6;
-        threshold();
-        
+      function GetAllStatistics() {
+        getStatValue("InboundCalls");
+        getStatValue("OutboundCalls");
+        getStatValue("HoldDuration");
+        getStatValue("MissedCalls");
+        getStatValue("RefusedCalls");
+        getStatValue("ReadyDuration");
 
 
-          // console.log(inbound, outbound);
-        };
-        GetAllStatistics();
-      
-  
-        // Update report every second
-        interval = setInterval(GetAllStatistics,
+        // for (var key in reasons_dict) {
+        //   if (key !== "undefined")
+        //     mean += reasons_dict[key];
+        // }
+        // mean = mean / 6;
+
+      };
+      GetAllStatistics();
+
+
+      // Update report every second
+      interval = setInterval(GetAllStatistics,
         5000);
 
-        // Set Timeout Interval
-        setTimeout(() => {
-          clearInterval(interval);  
-        }, 60000);
-
-      
+      // Set Timeout Interval
+      setTimeout(() => {
+        clearInterval(interval);
+      }, 60000);
 
 
-  
+
+
+
       document.getElementById('clear').addEventListener('click', () => {
         logsContainer.innerHTML = '';
       });
@@ -389,9 +426,12 @@
       document.getElementById('Retrieve').addEventListener('click', () => {
         sendCallAction('Retrieve');
       });
-      
+
       // Check session at first 
       currentSession();
-    </script>
-  </body>
+    });
+
+  </script>
+</body>
+
 </html>

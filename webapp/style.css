@@ -126,7 +126,7 @@ img#secret {
 .popup {
   position:absolute;
   width:50%;
-  height:110%;
+  /* height:110%; */
   top:25%;
   left:25%;
   text-align:center;

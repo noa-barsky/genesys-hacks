@@ -53,13 +53,12 @@
 
 </head>
 
-<body>
-  <div class="container body">
+<body >
+  <div class="container body" >
     <div class="main_container" >
 
-      <!-- top navigation -->
-      <div >
-        <div class="nav_menu">
+    
+        <div class="nav_menu" >
           <nav>
             <!-- <div class="nav toggle">
               <a id="menu_toggle">
@@ -75,24 +74,7 @@
                   <img src="production/images/img.jpg" alt="">Victor G. Dodig
                   <span class=" fa fa-angle-down"></span>
                 </a>
-                <ul class="dropdown-menu dropdown-usermenu float-right" >
-                  <li>
-                    <a href="javascript:;"> Profile</a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <span class="badge bg-red">50%</span>
-                      <span>Settings</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">Help</a>
-                  </li>
-                  <li>
-                    <a href="login.html">
-                      <i class="fa fa-sign-out"></i> Log Out</a>
-                  </li>
-                </ul>
+
               </li>
               <li class="nav-item" >
                   <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Reasons for Calls</a>
@@ -165,7 +147,7 @@
                 <div class="row x_title">
                   <div class="col-md-12">
 
-                    <div id="piechart" style="width: 80%; height: 80%; margin-left:10%; margin-top:-10px;">
+                    <div id="piechart" style="width: 80%; height: 80%; margin-left:10%; margin-top:-12px;">
                     </div>
 
                     <div class='overlay' style="margin-bottom: 200%;">
@@ -473,7 +455,7 @@
       };
 
       var reasons_mapping = {
-        "InboundCalls": "Mobile Banking Inquiry", "OutboundCalls": "Exchange Rate", "MissedCalls": "General Banking Inquiry",
+        "InboundCalls": "Mobile Banking", "OutboundCalls": "Exchange Rate", "MissedCalls": "General Banking",
         "HoldDuration": "Investments", "RefusedCalls": "Hours and Location", "ReadyDuration": "Loans"
       }
 
@@ -488,9 +470,9 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Reason for Call', 'Number of Calls', 'Average'],
-          ['Mobile Banking Inquiry', reasons_dict["InboundCalls"], mean],
+          ['Mobile Banking', reasons_dict["InboundCalls"], mean],
           ['Exchange Rate', reasons_dict["OutboundCalls"], mean],
-          ['General Banking Inquiry', reasons_dict["MissedCalls"], mean],
+          ['General Banking', reasons_dict["MissedCalls"], mean],
           ['Investments', reasons_dict["HoldDuration"], mean],
           ['Hours and Location', reasons_dict["RefusedCalls"], mean],
           ['Loans', reasons_dict["ReadyDuration"], mean]

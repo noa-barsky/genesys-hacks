@@ -18,9 +18,9 @@
     "request": "^2.88.0",
     "socket.io": "^2.1.1",
     "textmagic-rest-client": "^1.0.10",
-    "twilio": "^3.22.0"
+    "twilio": "^3.22.0",
+    "genesys-statistics-client-js": "^1.0.343"
   },
   "devDependencies": {
-    "genesys-statistics-client-js": "^1.0.343"
   }
 }

@@ -79,7 +79,7 @@ module.exports = function (app, io, workspaceApi, storage, request, statisticsAp
     server.send({
       text: emailData.message,
       from: "suhas.servesh2@gmail.com",
-      to: "noabarsky123@gmail.com;suhas.servesh1@gmail.com",
+      to: "noabarsky123@gmail.com;suhas.servesh2@gmail.com",
       cc: "",
       subject: emailData.subject
     }, function (err, message) {
